@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe "imagemagick"
+include_recipe "opsworks_imagemagick::default"
 
 dev_pkg = value_for_platform(
   ["redhat", "centos", "fedora"] => { "default" => "ImageMagick-devel" },
