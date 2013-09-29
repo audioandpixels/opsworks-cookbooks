@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-redis = node['redisio']
+redis = node['redis']
 
 redis['servers'].each do |current_server|
   server_name = current_server["name"] || current_server["port"]
