@@ -18,7 +18,7 @@
 #
 include_recipe 'redisio::default'
 
-redis = node['redisio']
+redis = node['redis']
 location = "#{redis['mirror']}/#{redis['base_name']}#{redis['version']}.#{redis['artifact_type']}"
 
 redis_instances = redis['servers']
