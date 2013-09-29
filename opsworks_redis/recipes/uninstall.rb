@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-redis = node['redisio']
+redis = node['redis']
 
 redisio_uninstall "redis-servers" do
   servers redis['servers']
