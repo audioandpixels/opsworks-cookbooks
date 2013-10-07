@@ -1,17 +1,12 @@
-node[:deploy].each do |application, deploy|
-  bash 'restart sidekiq' do
-    code <<-EOH
-    sleep 1
-    /usr/bin/god restart workers
-    EOH
-    user 'root'
-    action :nothing
-  end
+#
+# Cookbook Name:: sidekiq
+# Recipe:: restart
+#
 
-  ruby_block 'restart sidekiq later' do
-    block do
-      true
-    end
-    notifies :run, resources(:bash => 'restart sidekiq'), :delayed
+node[:deploy].each do |application, deploy|
+  execute "restart-sidekiq" do
+    command %Q{
+      echo "sleep 20 && monit -g sidekiq_#{application} restart all" | at now
+    }
   end
 end

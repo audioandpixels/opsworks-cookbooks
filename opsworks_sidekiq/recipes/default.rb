@@ -1,22 +1,29 @@
 #
-# Cookbook Name:: opsworks_sidekiq
+# Cookbook Name:: sidekiq
 # Recipe:: default
 #
+
 node[:deploy].each do |application, deploy|
-  pid_file = File.join(deploy[:deploy_to], 'shared', 'pids', 'sidekiq.pid')
-  god_monitor 'sidekiq' do
-    template_cookbook 'god'
-    template_source 'god_monitor.erb'
+  template "#{node[:monit][:conf_dir]}/sidekiq_#{application}.monitrc" do
+    owner 'root'
+    group 'root'
+    mode 0644
+    source "monitrc.conf.erb"
     variables({
-      :name => 'sidekiq',
-      :group => 'workers',
-      :env => {'RAILS_ENV' => deploy[:rails_env]},
-      :add_to_path => "/usr/local/bin",
-      :uid => deploy[:user],
-      :dir => File.join(deploy[:deploy_to], 'current'),
-      :start => "cd #{File.join(deploy[:deploy_to], 'current')}; bundle exec sidekiq -C config/sidekiq.yml -e #{deploy[:rails_env]} -P #{pid_file} 2>&1 | logger -t sidekiq",
-      :stop => "cd #{File.join(deploy[:deploy_to], 'current')}; bundle exec sidekiqctl stop #{pid_file} 60",
-      :memory_max => (1434 * 1024)
+      :app_name => application,
+      :deploy => deploy
     })
+  end
+
+  execute "ensure-sidekiq-is-setup-with-monit" do
+    command %Q{
+      monit reload
+    }
+  end
+
+  execute "restart-sidekiq" do
+    command %Q{
+      echo "sleep 20 && monit -g sidekiq_#{application} restart all" | at now
+    }
   end
 end
