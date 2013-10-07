@@ -11,7 +11,7 @@
 
 case node['platform']
 when "ubuntu"
-	include_recipe "sox_mp3::install_ubuntu"
+	include_recipe "opsworks_sox::install_ubuntu"
 else
 	Chef::Log.error "This cookbook is only supported in Ubuntu. Pull requests are welcome to support more environments"
     return
