@@ -30,3 +30,6 @@ dev_pkg = value_for_platform(
 )
 
 package dev_pkg
+
+# Add lame here temporarily
+package lame
