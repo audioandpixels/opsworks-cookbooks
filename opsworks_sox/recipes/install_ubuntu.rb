@@ -29,11 +29,6 @@ apt_package "libmp3lame-dev" do
 	action :install
 end
 
-# Install lame here for now
-apt_package "lame" do
-	action :install
-end
-
 bash "enable_sox_mp3" do
 	cwd "/tmp"
 
