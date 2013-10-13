@@ -11,4 +11,8 @@
   port: <%= @database[:port].to_i.inspect %>
 <% end -%>
 
+<% if @database[:pool] -%>
+	pool: <%= @database[:pool].to_i.inspect %>
+<% end -%>
+
 <% end %>
