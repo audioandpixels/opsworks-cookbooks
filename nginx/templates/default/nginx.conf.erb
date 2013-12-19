@@ -42,6 +42,7 @@ http {
 }
 
 server {
-  listen 80;
-  return 301 https://audiometric.io/$request_uri;
+  listen        8080;
+  server_name   audiometric.io;
+  rewrite       ^ https://$server_name$request_uri? permanent;
 }
