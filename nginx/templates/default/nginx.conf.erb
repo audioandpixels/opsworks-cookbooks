@@ -40,9 +40,3 @@ http {
   include <%= node[:nginx][:dir] %>/conf.d/*.conf;
   include <%= node[:nginx][:dir] %>/sites-enabled/*;
 }
-
-server {
-  listen        8080;
-  server_name   audiometric.io;
-  rewrite       ^ https://$server_name$request_uri? permanent;
-}
