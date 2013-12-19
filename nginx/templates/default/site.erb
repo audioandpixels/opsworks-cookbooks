@@ -1,10 +1,9 @@
 server {
   listen   8080;
-
   server_name  <%= @application[:domains].join(" ") %> <%= node[:hostname] %>;
-  access_log  <%= node[:nginx][:log_dir] %>/<%= @application[:domains].first %>.access.log;
+  rewrite     ^   https://audiometric.io$request_uri? permanent;
 
-  rewrite ^ https://$host$request_uri? permanent;
+  access_log  <%= node[:nginx][:log_dir] %>/<%= @application[:domains].first %>.access.log;
 
   location / {
     root   <%= @application[:absolute_document_root] %>;
