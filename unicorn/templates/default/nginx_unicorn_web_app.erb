@@ -3,9 +3,8 @@ upstream unicorn_<%= @application[:domains].first %> {
 }
 
 server {
-  listen   8080;
+  listen   80;
   server_name  <%= @application[:domains].join(" ") %> <%= node[:hostname] %>;
-  rewrite     ^   https://audiometric.io$request_uri? permanent;
   access_log <%= node[:nginx][:log_dir] %>/<%= @application[:domains].first %>.access.log;
 
   keepalive_timeout 5;
@@ -40,6 +39,11 @@ server {
   location = /500.html {
     root <%= @application[:absolute_document_root] %>;
   }
+}
+
+server {
+  listen   8080;
+  rewrite     ^   https://audiometric.io$request_uri? permanent;
 }
 
 <% if @application[:ssl_support] %>
