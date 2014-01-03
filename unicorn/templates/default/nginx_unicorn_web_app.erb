@@ -43,7 +43,10 @@ server {
 
 server {
   listen   8080;
-  rewrite     ^   https://audiometric.io$request_uri? permanent;
+
+  location / {
+    rewrite ^ https://$host$request_uri? permanent;
+  }
 }
 
 <% if @application[:ssl_support] %>
