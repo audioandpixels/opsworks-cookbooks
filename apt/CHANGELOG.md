@@ -2,6 +2,50 @@ apt Cookbook CHANGELOG
 ======================
 This file is used to list changes made in each version of the apt cookbook.
 
+v2.3.8 (2014-02-14)
+-------------------
+### Bug
+- **[COOK-4287](https://tickets.opscode.com/browse/COOK-4287)** - Cleanup the Kitchen
+
+
+v2.3.6
+------
+* [COOK-4154] - Add chefspec matchers.rb file to apt cookbook
+* [COOK-4102] - Only index created repository
+
+
+v2.3.6
+------
+* [COOK-4154] - Add chefspec matchers.rb file to apt cookbook
+* [COOK-4102] - Only index created repository
+
+
+v2.3.4
+------
+No change. Version bump for toolchain sanity
+
+
+v2.3.2
+------
+- [COOK-3905] apt-get-update-periodic: configuration for the update period
+- Updating style for rubocops
+- Updating test-kitchen harness
+
+
+v2.3.0
+------
+### Bug
+- **[COOK-3812](https://tickets.opscode.com/browse/COOK-3812)** - Add a way to bypass the apt existence check
+
+### Improvement
+- **[COOK-3567](https://tickets.opscode.com/browse/COOK-3567)** - Allow users to bypass apt-cache via attributes
+
+
+v2.2.1
+------
+### Improvement
+- **[COOK-664](https://tickets.opscode.com/browse/COOK-664)** - Check platform before running apt-specific commands
+
 
 v2.2.0
 ------
