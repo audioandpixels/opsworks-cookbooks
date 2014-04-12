@@ -1,6 +1,6 @@
 # Instillation
-default[:redis][:version]         = '2.6.13'
-default[:redis][:source_checksum] = '2ef8ea6a67465b6c5a5ea49241313d3dbc0de11b'
+default[:redis][:version]         = '2.8.8'
+default[:redis][:source_checksum] = 'aa811f399db58c92c8ec5e48271d307e9ab8eb81'
 default[:redis][:install_dir]     = '/usr/local'
 default[:redis][:conf_dir]        = '/etc/redis'
 default[:redis][:db_dir]          = '/srv/redis'
