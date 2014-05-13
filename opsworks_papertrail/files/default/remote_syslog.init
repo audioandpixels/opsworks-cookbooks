@@ -1,5 +1,15 @@
 #!/bin/bash
-#
+
+### BEGIN INIT INFO
+# Provides: remote_syslog
+# Required-Start: $remote_fs $syslog
+# Required-Stop: $remote_fs $syslog
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Start and Stop
+# Description: Runs remote_syslog
+### END INIT INFO
+
 #       /etc/init.d/remote_syslog
 #
 # Starts the remote_syslog daemon
@@ -10,14 +20,14 @@
 # processname: remote_syslog
 
 prog="remote_syslog"
-config="/etc/papertrail/logs.yml"
+config="/etc/papertrail/log_files.yml"
 pid_dir="/var/run"
 
-EXTRAOPTIONS="--tls"
+EXTRAOPTIONS=""
 
 pid_file="$pid_dir/$prog.pid"
 
-PATH=/sbin:/bin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:usr/local/rbenv/shims/:/opt/rbenv/shims/
+PATH=/sbin:/bin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:$PATH
 
 RETVAL=0
 
@@ -29,7 +39,7 @@ start(){
     echo -n $"Starting $prog: "
 
     unset HOME MAIL USER USERNAME
-    $prog -c $config -P $pid_dir "$EXTRAOPTIONS"
+    $prog -c $config --pid-file $pid_file $EXTRAOPTIONS
     RETVAL=$?
     echo
     return $RETVAL
