@@ -1,4 +1,4 @@
-node[:deploy].each do |application, deploy|
+node[:deploy][:rails_applications].each do |application, deploy|
   deploy = node[:deploy][application]
   rails_env = deploy[:rails_env]
 
