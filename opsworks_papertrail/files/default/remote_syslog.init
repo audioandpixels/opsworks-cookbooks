@@ -23,7 +23,7 @@ prog="remote_syslog"
 config="/etc/papertrail/logs.yml"
 pid_dir="/var/run"
 
-EXTRAOPTIONS=""
+EXTRAOPTIONS="--tls"
 
 pid_file="$pid_dir/$prog.pid"
 
