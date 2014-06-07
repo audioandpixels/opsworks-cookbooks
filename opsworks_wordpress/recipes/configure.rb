@@ -22,12 +22,7 @@ node[:deploy].each do |app_name, deploy|
         source "wp-config.php.erb"
         mode 0660
         group deploy[:group]
-
-        if platform?("ubuntu")
-          owner "www-data"
-        elsif platform?("amazon")
-          owner "apache"
-        end
+        owner "root"
 
         variables(
             :database   => (deploy[:database][:database] rescue nil),
