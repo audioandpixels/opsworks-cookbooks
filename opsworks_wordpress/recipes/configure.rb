@@ -21,8 +21,8 @@ node[:deploy].each do |app_name, deploy|
     template "#{deploy[:deploy_to]}/current/wp-config.php" do
         source "wp-config.php.erb"
         mode 0660
-        group deploy[:group]
-        owner "www-data"
+        group "www-data"
+        owner "deploy"
 
         variables(
             :database   => (deploy[:database][:database] rescue nil),
