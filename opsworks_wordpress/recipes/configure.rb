@@ -32,6 +32,12 @@ node[:deploy].each do |app_name, deploy|
             :keys       => (keys rescue nil)
         )
     end
+    
+    # pg4wp needs group write permissions to log
+    execute "pg4wp log permissions" do
+      cwd "#{deploy[:deploy_to]}/current/wp-content/"
+      command "chmod g+w pg4wp"
+    end
 end
 
 # Create a Cronjob for Wordpress
